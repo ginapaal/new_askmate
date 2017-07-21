@@ -32,8 +32,6 @@ def ask_new_question():
 
 @app.route("/question/<question_id>", methods=["GET", "POST"])
 def list_answers(question_id):
-    question_id = request.form['questionId']
-    print(question_id)
     return render_template("answers.html", question_id=question_id)
 
 
