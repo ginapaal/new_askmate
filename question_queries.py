@@ -4,7 +4,7 @@ import psycopg2.extras
 
 def list_all_question(conn):
     cursor = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
-    cursor.execute("""SELECT vote_number, title, message FROM questions ORDER BY submission_time DESC;""")
+    cursor.execute("""SELECT id, vote_number, title, message FROM questions ORDER BY submission_time DESC;""")
     rows = cursor.fetchall()
     return rows
 

@@ -29,5 +29,13 @@ def ask_new_question():
 
     return redirect("/")
 
+
+@app.route("/question/<question_id>", methods=["GET", "POST"])
+def list_answers(question_id):
+    question_id = request.form['questionId']
+    print(question_id)
+    return render_template("answers.html", question_id=question_id)
+
+
 if __name__ == '__main__':
     app.run(debug=True)
