@@ -25,10 +25,9 @@ def ask_new_question():
     sub_time = datetime.now()
     title = request.form['question_title']
     message = request.form['question_message']
-
     question_queries.new_question(database_connection.connect_to_db(), sub_time, title, message)
 
-    return render_template("main.html")
+    return redirect("/")
 
 if __name__ == '__main__':
     app.run(debug=True)
