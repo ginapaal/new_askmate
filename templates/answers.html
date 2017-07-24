@@ -4,9 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>AskMate - answers</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" defer></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/answers.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/answers.js') }}" defer></script>
 </head>
 <body>
-    <h1> This is an answer {{ question_id }} </h1>
+    <!-- Navbar-->
+    <nav class="navbar navbar-default">
+        <div class="conatiner-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/"> AskMate </a>
+            </div>
+            <ul class="nav navbar-nav">
+                <a href="/sign_up"><button type="button" class="btn btn-default navbar-btn">Sign up</button></a>
+                <a href="/login"><button type="button" class="btn btn-default navbar-btn"> Login </button></a>
+            </ul> 
+        </div>
+    </nav>
+
+    <h1> List of answers for question #{{ question_id }} </h1>
+
+    <!-- Table -->
+
+    <div class="container table-responsive">
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th> Answer </th>
+                <th> Vote number </th>
+            </tr>
+        </thead>
+        <tbody class="table table-striped" id="tbody">
+
+        </tbody>
+    </table>
+    </div>
+
+    <!-- New answer -->
+
+     <div class="container">
+        <div id="addanswer-container">
+            <button type="button" class="btn btn-default navbar-btn" id="answer-button">Add New Answer</button>
+        </div>
+        <div class="row">
+        <form action="/question/{{ question_id }}/new_answer" method="POST">
+            <div class="span4" id="new_answer_text">
+                    <div class="span6">
+                        <textarea minlength="10" rows="5" cols="50" placeholder="Add new answer" name="answer_message"></textarea>
+                        <div class="span2">
+                            <input class="btn btn-default navbar-btn" type="submit" id="sendAnswer" value="Answer it">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        </div>
+    </div>
 </body>
 </html>
